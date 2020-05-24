@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.apartment.dao.RoomInfoDAO" >
+  <resultMap id="BaseResultMap" type="com.apartment.bean.RoomInfo" />
+  <select id="selectRoomInfoById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select * from roominfo where roomId = #{roomId}
+  </select>
+  <delete id="deleteRoomInfoById" parameterType="java.lang.Integer" >
+    delete from roominfo where roomId = #{roomId}
+  </delete>
+  <insert id="insertRoomInfo" parameterType="com.apartment.bean.RoomInfo" >
+    insert into roominfo (roomId, roomType, orientation, rentType, rent, contractStartDate, contractEndDate, rentEndDate) 
+    values (#{roomId}, #{roomType}, #{orientation}, #{rentType}, #{rent}, #{contractStartDate}, #{contractEndDate}, #{rentEndDate})
+  </insert>
+  <update id="updateRoomInfo" parameterType="com.apartment.bean.RoomInfo" >
+    update roomInfo set roomType = #{roomType}, orientation = #{orientation}, rentType = #{rentType}, rent = #{rent}, 
+    contractStartDate = #{contractStartDate}, contractEndDate = #{contractEndDate}, rentEndDate = #{rentEndDate}
+    where roomId = #{roomId}
+  </update>
+  <select id="getAllRooms" resultMap="BaseResultMap" >
+    select * from roominfo
+  </select>
+</mapper>
